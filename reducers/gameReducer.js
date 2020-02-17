@@ -24,7 +24,7 @@ export default (state = INITIAL_STATE, action) => {
         case SOCKET_CONNECTED: 
             return {...state, connecting: false, connected: true, socket: action.payload};
         case JOINED_SERVER: 
-            return {...state, joined: true};
+            return {...state, joined: true, points: action.payload};
         case YOU_CLICKED: 
             return {...state, points: state.points + action.payload.points};
         case OUT_OF_POINTS: 
