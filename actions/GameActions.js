@@ -2,7 +2,11 @@ import axios from 'axios';
 import { 
     TEST_TYPE,
     SOCKET_CONNECTING,
-    SOCKET_CONNECTED
+    SOCKET_CONNECTED,
+    JOINED_SERVER,
+    YOU_CLICKED,
+    OUT_OF_POINTS,
+    DO_RETRY
 } from './types';
 import SocketHandler from '../util/SocketHandler'
 

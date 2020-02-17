@@ -1,3 +1,7 @@
 export const TEST_TYPE = "TEST_TYPE";
 export const SOCKET_CONNECTING = "SOCKET_CONNECTING";
 export const SOCKET_CONNECTED = "SOCKET_CONNECTED";
+export const JOINED_SERVER = "JOINED_SERVER";
+export const YOU_CLICKED = "YOU_CLICKED";
+export const OUT_OF_POINTS = "OUT_OF_POINTS";
+export const DO_RETRY = "DO_RETRY";
