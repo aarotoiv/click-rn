@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { socketConnect } from '../actions';
 import ClickButton from './ClickButton';
+import SocketHandler from '../util/SocketHandler';
 
 class Main extends Component {
     constructor(props) {
@@ -15,10 +16,14 @@ class Main extends Component {
         console.log(this.props.joined, this.props.points);
     }
 
+    handleClick() {
+        SocketHandler.click(this.props.socket);
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <ClickButton />
+                <ClickButton handleClick={this.handleClick.bind(this)}/>
             </View>
         );    
     }

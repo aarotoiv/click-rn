@@ -21,10 +21,10 @@ export default {
         });
         return socket;
     },
-    click() {
+    click(socket) {
         socket.emit('click', {});
     },
-    retry() {
+    retry(socket) {
         socket.emit('retry', {});
     }
 }

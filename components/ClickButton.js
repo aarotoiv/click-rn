@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { click } from '../util/SocketHandler';
+
 
 class ClickButton extends Component {
-
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (
-            <TouchableOpacity style={styles.clickButton}>
+            <TouchableOpacity style={styles.clickButton} onPress={this.props.handleClick}>
                 <Text style={styles.clickButtonText}>
                     Click me!
                 </Text>
