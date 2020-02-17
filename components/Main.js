@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
-class Home extends Component {
+class Main extends Component {
     constructor(props) {
 
     }
@@ -36,4 +36,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { socketConnect })(Home);
+export default connect(mapStateToProps, { socketConnect })(Main);
