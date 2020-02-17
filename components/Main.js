@@ -7,7 +7,7 @@ class Main extends Component {
 
     }
     componentDidMount() {
-        
+        this.props.socketConnect();
     }
     componentDidUpdate() {
         
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-       
+    
     };
 };
 
