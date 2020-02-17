@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { socketConnect } from '../actions';
 import ClickButton from './ClickButton';
 import AskRetry from './AskRetry';
+import Points from './Points';
 import SocketHandler from '../util/SocketHandler';
 
 class Main extends Component {
@@ -39,7 +40,10 @@ class Main extends Component {
         ) 
         :
         (
-            <ClickButton handleClick={this.handleClick.bind(this)} />
+            <View>
+                <ClickButton handleClick={this.handleClick.bind(this)} />
+                <Points points={this.props.points} />
+            </View>
         );
     }
 }

@@ -6,10 +6,20 @@ class Points extends Component {
     constructor(props) {
         super(props);
     }
+    renderBubbles() {
+        let bubbles = [];
+        for(let i = 0; i<this.props.points; i++) {
+            bubbles.push(<View style={styles.bubble}></View>)
+        }
+        return bubbles;
+    }
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Your points({this.props.points})</Text>
+                <Text style={styles.title}>Your points ({this.props.points})</Text>
+                <View style={styles.bubbles}>
+                    {this.renderBubbles()}
+                </View>
             </View>
         );    
     }
@@ -18,12 +28,24 @@ class Points extends Component {
 const styles = StyleSheet.create({
     container: {
         width: 250,
-        height: 120,
-        backgroundColor: "#fff"
+        height: 250,
+        marginTop: 50
     },
     title: {
         color: "#fff",
         fontSize: 20
+    },
+    bubbles: {
+        flex: 1,
+        flexDirection: "row",
+        flexWrap: "wrap"
+    },
+    bubble: {
+        width: 8,
+        height: 8,
+        borderRadius: 10,
+        margin: 5,
+        backgroundColor: "#fff"
     }
 });
 
