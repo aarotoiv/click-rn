@@ -31,7 +31,6 @@ export default (state = INITIAL_STATE, action) => {
             return {...state, points: 0, ask_retry: true};
         case DO_RETRY:
             return {...state, points: action.payload};
-
         default:
             return state;
     }

@@ -15,7 +15,7 @@ export const socketConnect = () => {
         dispatch({
             type: SOCKET_CONNECTING
         }); 
-        SocketHandler.initialize()
+        SocketHandler.initialize(dispatch, joinedServer, youClicked, outOfPoints, doRetry)
         .then((socket) => {
             dispatch({
                 type: SOCKET_CONNECTED,
