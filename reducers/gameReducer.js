@@ -1,5 +1,5 @@
 import { 
-    
+    TEST_TYPE
 } from '../actions/types';
 
 const INITIAL_STATE = {
