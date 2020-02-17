@@ -14,10 +14,6 @@ class Main extends Component {
     componentDidMount() {
         this.props.socketConnect();
     }
-    componentDidUpdate() {
-        console.log(this.props.joined, this.props.points, this.props.ask_retry);
-    }
-
     handleClick() {
         SocketHandler.click(this.props.socket);
     }
@@ -42,7 +38,7 @@ class Main extends Component {
         (
             <View>
                 <ClickButton handleClick={this.handleClick.bind(this)} />
-                <Points points={this.props.points} />
+                <Points points={this.props.points} hitsTillPrize={this.props.hitsTillPrize}/>
             </View>
         );
     }
@@ -63,7 +59,8 @@ const mapStateToProps = (state) => {
         connecting: state.game.connecting,
         connected: state.game.connected,
         joined: state.game.joined,
-        ask_retry: state.game.ask_retry
+        ask_retry: state.game.ask_retry,
+        hitsTillPrize: state.game.hitsTillPrize
     };
 };
 

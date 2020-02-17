@@ -15,6 +15,7 @@ const INITIAL_STATE = {
     connected: false,
     joined: false,
     ask_retry: false,
+    hitsTillPrize: 0
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -26,7 +27,7 @@ export default (state = INITIAL_STATE, action) => {
         case JOINED_SERVER: 
             return {...state, joined: true, points: action.payload};
         case YOU_CLICKED: 
-            return {...state, points: state.points + action.payload.points};
+            return {...state, points: state.points + action.payload.points, hitsTillPrize: action.payload.hitsTillPrize};
         case OUT_OF_POINTS: 
             return {...state, points: 0, ask_retry: true};
         case DO_RETRY:
