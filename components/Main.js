@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { socketConnect } from '../actions';
+import ClickButton from './ClickButton';
 
 class Main extends Component {
     constructor(props) {
@@ -17,9 +18,7 @@ class Main extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>
-                    asdfasdfasdfsdafasdfds
-                </Text>
+                <ClickButton />
             </View>
         );    
     }
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#000",
-        justifyContent: "center",
+        alignItems: "center"
     }
 });
 
