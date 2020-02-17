@@ -30,7 +30,7 @@ export default (state = INITIAL_STATE, action) => {
         case OUT_OF_POINTS: 
             return {...state, points: 0, ask_retry: true};
         case DO_RETRY:
-            return {...state, points: action.payload};
+            return {...state, ask_retry: false, points: action.payload};
         default:
             return state;
     }

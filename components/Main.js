@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { socketConnect } from '../actions';
 import ClickButton from './ClickButton';
+import AskRetry from './AskRetry';
 import SocketHandler from '../util/SocketHandler';
 
 class Main extends Component {
@@ -13,19 +14,33 @@ class Main extends Component {
         this.props.socketConnect();
     }
     componentDidUpdate() {
-        console.log(this.props.joined, this.props.points);
+        console.log(this.props.joined, this.props.points, this.props.ask_retry);
     }
 
     handleClick() {
         SocketHandler.click(this.props.socket);
     }
-
+    doRetry() {
+        SocketHandler.retry(this.props.socket);
+    }
+    
     render() {
         return (
             <View style={styles.container}>
-                <ClickButton handleClick={this.handleClick.bind(this)}/>
+                {this.renderContent()}
             </View>
         );    
+    }
+
+    renderContent() {
+        return this.props.joined && this.props.points < 1 && this.props.ask_retry ? 
+        (
+            <AskRetry doRetry={this.doRetry.bind(this)} />
+        ) 
+        :
+        (
+            <ClickButton handleClick={this.handleClick.bind(this)} />
+        );
     }
 }
 
