@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
+//the button itself, has the clickhandler passed as a prop
 
 class ClickButton extends Component {
     constructor(props) {

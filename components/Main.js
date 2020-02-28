@@ -6,17 +6,21 @@ import ClickButton from './ClickButton';
 import AskRetry from './AskRetry';
 import Points from './Points';
 import SocketHandler from '../util/SocketHandler';
+import { Bubbles } from 'react-native-loader';
 
 class Main extends Component {
     constructor(props) {
         super(props);
     }
+    //Attempt the socket connection at start
     componentDidMount() {
         this.props.socketConnect();
     }
+    //Handle user click
     handleClick() {
         SocketHandler.click(this.props.socket);
     }
+    //Handle retry
     doRetry() {
         SocketHandler.retry(this.props.socket);
     }
@@ -30,7 +34,12 @@ class Main extends Component {
     }
 
     renderContent() {
-        return this.props.joined && this.props.points < 1 && this.props.ask_retry ? 
+        return this.props.connecting || !this.props.joined ?
+        (
+            <Bubbles size={30} color="#FFF" />
+        )
+        :
+        this.props.joined && this.props.points < 1 && this.props.ask_retry ? 
         (
             <AskRetry doRetry={this.doRetry.bind(this)} />
         ) 
@@ -48,7 +57,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#000",
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "center"
     }
 });
 

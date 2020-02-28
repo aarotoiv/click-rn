@@ -17,7 +17,7 @@ const INITIAL_STATE = {
     ask_retry: false,
     hitsTillPrize: 0
 };
-
+//very basic reducer 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case SOCKET_CONNECTING: 

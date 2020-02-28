@@ -8,10 +8,11 @@ import Main from './components/Main';
 
 export default class App extends Component {
   componentDidMount() {
-    console.log(applyMiddleware);
+    //hide status bar
     StatusBar.setHidden(true);
   }
   render() {
+    //create redux store with reducers and apply reduxthunk
     const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
     return (
       <Provider store={store}>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 
+//Points view. Contains point text, point graphic and cool popup messages for when the next prize drops
 
 class Points extends Component {
     constructor(props) {
@@ -10,13 +11,16 @@ class Points extends Component {
             messages: {}
         };
     }
+    //Whenever the hitstillprize changes
     componentDidUpdate() {
         const { hitsTillPrize } = this.props;
         if(this.state.lastHTP != hitsTillPrize) {
+            //set the current hitstillprize
             this.setState({lastHTP: hitsTillPrize});
-
+            //get messages(the ones that popup)
             let messages = this.state.messages;
             
+            //generate random key and assing the values with that key
             const key = Math.random().toString(36).substring(7);
             messages[key] = {
                 text: `${hitsTillPrize} clicks till next prize.`,
@@ -24,8 +28,7 @@ class Points extends Component {
                 yAnim: new Animated.Value(0)
             };
 
-            this.setState({messages});
-
+            //start animations
             Animated.timing(
                 this.state.messages[key].fadeAnim,
                 {
@@ -33,7 +36,6 @@ class Points extends Component {
                     duration: 1000
                 }
             ).start();
-            
             Animated.timing(
                 this.state.messages[key].yAnim,
                 {
@@ -41,14 +43,27 @@ class Points extends Component {
                     duration: 1000
                 }
             ).start();
-
-            setTimeout(() => {
-                let messages = this.state.messages;
-                delete messages[key];
-                this.setState({messages});
-            }, 2000);
+            messages[key].removal = (
+                setTimeout(() => {
+                    let messages = this.state.messages;
+                    delete messages[key];
+                    this.setState({messages});
+                }, 2000)
+            );
+            //update messages in state
+            this.setState({messages});
         }
     }
+    componentWillUnmount() {
+        const messages = this.state.messages;
+        const keys = Object.keys(messages);
+        for(let i = 0; i<keys.length; i++) {
+            if(messages[keys[i]].removal)
+                clearTimeout(messages[keys[i]].removal);
+        }
+        this.setState({messages: {}, lastHTP: 0});
+    }
+    //render point bubbles
     renderBubbles() {
         let bubbles = [];
         for(let i = 0; i<this.props.points; i++) {
@@ -56,6 +71,7 @@ class Points extends Component {
         }
         return bubbles;
     }
+    //render all the popup messages
     renderMessages() {
         const keys = Object.keys(this.state.messages);
         const allMessages = Object.values(this.state.messages);
@@ -95,7 +111,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flexWrap: "wrap",
         maxHeight: 300,
-        overflow: "hidden"
+        overflow: "hidden",
     },
     bubble: {
         width: 10,

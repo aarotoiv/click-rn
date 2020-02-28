@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
+//this pops up when player runs out of points
 
 class AskRetry extends Component {
     constructor(props) {
